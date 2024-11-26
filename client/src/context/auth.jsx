@@ -1,7 +1,5 @@
-// import axios from "axios";
 import { useEffect } from "react";
 import { create } from "zustand";
-import instance from "../axios";
 
 // Zustand store
 const useAuthStore = create((set) => ({
@@ -12,32 +10,43 @@ const useAuthStore = create((set) => ({
   setAuth: (newAuth) =>
     set((state) => ({ auth: { ...state.auth, ...newAuth } })),
   initializeAuth: () => {
-    const data = localStorage.getItem("auth");
-    if (data) {
-      const parstData = JSON.parse(data);
-      set(() => ({
-        auth: {
-          user: parstData.user,
-          token: parstData.token,
-        },
-      }));
-      // console.log("Initialized auth:", parstData);
-    } else{
-        console.log("No auth data in localStorage");
+    try {
+      const data = localStorage.getItem("auth");
+      if (data) {
+        const parsedData = JSON.parse(data);
+        set(() => ({
+          auth: {
+            user: parsedData.user,
+            token: parsedData.token,
+          },
+        }));
+      }
+    } catch (error) {
+      console.error("Error initializing auth:", error);
+      localStorage.removeItem("auth");
     }
   },
+  logout: () => {
+    localStorage.removeItem("auth");
+    set(() => ({
+      auth: {
+        user: null,
+        token: "",
+      },
+    }));
+    window.location.href = "/login";
+  },
 }));
-// Tokenni axios uchun default sarlavha sifatida o'rnatish
-const authStore = useAuthStore.getState();
-instance.defaults.headers.common["Authorization"] = authStore.auth?.token;
 
-// costum hook
+// Custom hook
 const useAuth = () => {
-  const { auth, setAuth, initializeAuth } = useAuthStore();
+  const { auth, setAuth, initializeAuth, logout } = useAuthStore();
+
   useEffect(() => {
     initializeAuth();
   }, []);
-  return { auth, setAuth };
+
+  return { auth, setAuth, logout };
 };
 
-export {useAuth}
+export { useAuth };
