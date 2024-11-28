@@ -12,9 +12,9 @@ const PrivateRoute = () => {
         const authCheck = async () => {
             const res = await instance.get(`auth/user-auth`, {
                 //  bu headerni auth.jsx olib kelib beradi, barcha sorovlar uchun
-                headers: {
-                    Authorization: auth?.token,
-                }
+                // headers: {
+                //     Authorization: auth?.token,
+                // }
             })
             if(res.data.ok){
                 setOk(true)

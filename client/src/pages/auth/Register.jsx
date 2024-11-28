@@ -15,7 +15,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const res = await instance.post(`auth/register`, data);
-      console.log(data)
+      // console.log(data)
       if (res && res.data.success) {
         toast.success(res.data.message);
         navigate("/login");

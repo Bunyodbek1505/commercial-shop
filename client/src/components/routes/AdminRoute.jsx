@@ -11,7 +11,7 @@ const AdminRoute = () => {
     useEffect(() => {
         const authCheck = async () => {
             const res = await instance.get(`auth/admin-auth`,{
-                headers: { Authorization: auth?.token },
+                // headers: { Authorization: auth?.token },
               })
             if(res.data.ok){
                 setOk(true)

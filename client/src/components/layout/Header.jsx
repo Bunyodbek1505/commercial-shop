@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
+import { ChevronDown } from "lucide-react";
 
 const Header = () => {
   const { auth, setAuth } = useAuth();
@@ -101,8 +102,10 @@ const Header = () => {
                 {/* dropdown */}
                 <Menu>
                   <MenuHandler>
-                    <Typography className="cursor-pointer">
+                    <Typography className="cursor-pointer flex items-end">
+                      {/* {auth?.user?.name.charAt(0).toUpperCase() + auth?.user?.name.slice(1)}  */}
                       {auth?.user?.name}
+                       <ChevronDown />
                     </Typography>
                   </MenuHandler>
                   <MenuList>
