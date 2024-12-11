@@ -1,8 +1,11 @@
-import Layout from "../components/layout/Layout"
+import Layout from "../components/layout/layout"
+
 
 const HomePage = () => {
   return (
-    <Layout title={'All - Products'}>Home page</Layout>
+    <Layout title={'All - Products'}>
+      
+    </Layout>
   )
 }
 

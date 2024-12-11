@@ -14,8 +14,14 @@ instance.interceptors.request.use(
     if (auth?.token) {
       config.headers.Authorization = auth.token;
     }
+    // Fayl yuklash uchun Content-Type ni sozlash, agar FormData bo'lsa "multipart/form-data" qo'shadi.
+    if(config.data instanceof FormData){
+      config.headers["Content-Type"] = "multipart/form-data";
+    }
     return config;
   },
+
+
   (error) => {
     return Promise.reject(error);
   }

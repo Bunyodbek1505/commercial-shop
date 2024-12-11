@@ -1,5 +1,5 @@
 import AdminMenu from "../../components/layout/AdminMenu";
-import Layout from "../../components/layout/Layout";
+import Layout from "../../components/layout/layout";
 import { useAuth } from "../../context/auth";
 
 const AdminDashboard = () => {

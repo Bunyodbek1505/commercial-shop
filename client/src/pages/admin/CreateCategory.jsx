@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import CategoryForm from "../../components/form/CategoryForm";
 import AdminMenu from "../../components/layout/AdminMenu";
-import Layout from "../../components/layout/Layout";
 import instance from "../../axios";
 import toast from "react-hot-toast";
 import { Dialog } from "@material-tailwind/react";
+import Layout from "../../components/layout/layout";
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
